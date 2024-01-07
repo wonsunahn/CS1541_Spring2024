@@ -1,21 +1,20 @@
-# Syllabus - Spring 2023
+# Syllabus - Spring 2024
 CS 1541 Computer Architecture
 
-## WEEK 1 (Week of 9 JAN)
+## WEEK 1 (Week of 8 JAN)
 
 * Class 1: Course introduction and Syllabus
-  * Fill out the Partnership Contract (due 1/23 on GradeScope)
+  * Fill out the Partnership Contract (due 1/22 on GradeScope)
   
 * Class 2: Overview and Application Pull
 
-
-## WEEK 2 (Week of 16 JAN)
+## WEEK 2 (Week of 15 JAN)
 
 * Class 1: Martin Luther King Day (NO CLASSES)
 
 * Class 2: Technology Push (Advances & Constraints)
 
-## WEEK 3 (Week of 23 JAN)
+## WEEK 3 (Week of 22 JAN)
   
 * Class 1: Review of processor design ( Chapters 4.1-4.4)
   
@@ -23,7 +22,7 @@ CS 1541 Computer Architecture
 
 * Homework 1 released on GradeScope
 
-## WEEK 4 (Week of 30 JAN)
+## WEEK 4 (Week of 29 JAN)
 
 * Class 1: Dealing with structural / data / control hazards
 
@@ -33,7 +32,7 @@ CS 1541 Computer Architecture
 
 * Project 1 released on GradeScope
 
-## WEEK 5 (Week of 6 FEB)
+## WEEK 5 (Week of 5 FEB)
 
 * Class 1: Optimizing structural / data / control hazards (cont'd)
 
@@ -41,7 +40,7 @@ CS 1541 Computer Architecture
 
 * Homework 2 released on GradeScope
 
-## WEEK 6 (Week of 13 FEB)
+## WEEK 6 (Week of 12 FEB)
 
 * Class 1: Branch Prediction and Predication (cont'd)
 
@@ -49,32 +48,19 @@ CS 1541 Computer Architecture
 
 * Homework 2 due on GradeScope
 
-## WEEK 7 (Week of 20 FEB)
+## WEEK 7 (Week of 19 FEB)
 
 * Class 1: VLIW compiler scheduling
 
 * Class 2: Superscalars
 
-## WEEK 8 (Week of 27 FEB)
+## WEEK 8 (Week of 26 FEB)
 
 * Class 1: Exceptions
 
-* Class 2: Review for Midterm 1
+* Class 2: Midterm 1 on GradeScope
 
-* Midterm 1 on GradeScope: Thursday (Mar. 2) 8:00 AM - Saturday (Mar. 4) 11:59 PM
-  * Check out the **[study guide](/study_guides/midterm_1_study_guide.md)**!
-  * Will be posted as link named "Midterm 1" at Thursday 10:00 AM
-  * You will choose a 3 hour span to complete exam within the above 2-day period
-  * Your 3 hours begin the moment you click on link and agree to the terms on the next screen
-  * Open book but individual work
-  
-## WEEK 9 (Week of 6 MAR)
-
-* Class 1: Spring Break (NO CLASS)
-
-* Class 2: Spring Break (NO CLASS)
-
-## WEEK 10 (Week of 13 MAR)
+## WEEK 9 (Week of 4 MAR)
 
 * Class 1: The Memory Hierarchy and Midterm 1 discussion
 
@@ -82,7 +68,13 @@ CS 1541 Computer Architecture
 
 * Project 1 due on GradeScope
 
-## WEEK 11 (Week of 20 MAR)
+## WEEK 10 (Week of 11 MAR)
+
+* Class 1: Spring Break (NO CLASS)
+
+* Class 2: Spring Break (NO CLASS)
+
+## WEEK 11 (Week of 18 MAR)
 
 * Class 1: Introduction to caches
 
@@ -90,7 +82,7 @@ CS 1541 Computer Architecture
 
 * Homework 3 released on GradeScope
 
-## WEEK 12 (Week of 27 MAR)
+## WEEK 12 (Week of 25 MAR)
 
 * Class 1: Evaluating cache design and AMAT / Cache block size
 
@@ -98,7 +90,7 @@ CS 1541 Computer Architecture
 
 * Project 2 released on GradeScope
 
-## WEEK 13 (Week of 3 APR)
+## WEEK 13 (Week of 1 APR)
 
 * Class 1: Write back vs write through caches
 
@@ -106,7 +98,7 @@ CS 1541 Computer Architecture
 
 * Homework 3 due on GradeScope
 
-## WEEK 14 (Week of 10 APR)
+## WEEK 14 (Week of 8 APR)
 
 * Class 1: Virtual Memory / TLBs / Cache Coherence
 
@@ -114,7 +106,7 @@ CS 1541 Computer Architecture
 
 * Homework 4 released on GradeScope
 
-## WEEK 15 (Week of 17 APR)
+## WEEK 15 (Week of 15 APR)
 
 * Class 1: GPU programming and performance
 
@@ -122,14 +114,9 @@ CS 1541 Computer Architecture
 
 * Homework 4 due on GradeScope
 
-## WEEK 16 (Week of 24 APR)
+## WEEK 16 (Week of 22 APR)
 
-* Midterm 2 on GradeScope: Monday (Apr. 24) 8:00 AM - Wednesday (Apr. 26) 11:59 PM
-  * Check out the **[study guide](/study_guides/midterm_2_study_guide.md)**!
-  * Will be posted as link named "Midterm 2" at Monday 8:00 AM
-  * You will choose a 3 hour span to complete exam within the above 3-day period
-  * Your 3 hours begin the moment you click on link and agree to the terms on the next screen
-  * Open book but individual work
+* Midterm 2 on GradeScope (TBD on Finals day)
 
 * Homework 4 Extra Credit due on GradeScope
 

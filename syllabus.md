@@ -1,5 +1,5 @@
 # CS 1541
-Computer Architecture - Spring 2023
+Computer Architecture - Spring 2024
 
 ## Course Information
 
@@ -15,7 +15,7 @@ Computer Architecture - Spring 2023
   * Chat on Microsoft Teams: Mon-Fri 9:00 AM - 6:00 PM
   * Physical Office Hours: Mon/Wed 2:30 PM - 4:00 PM @ 5423 Sennott Square, or by appointment
 
-**Class GitHub repo:** https://www.github.com/wonsunahn/CS1541_Spring2023
+**Class GitHub repo:** https://www.github.com/wonsunahn/CS1541_Spring2024
 
 **Required Texts:**
 * Computer Organization and Design - The Hardware/Software Interface
