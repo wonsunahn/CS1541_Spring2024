@@ -13,7 +13,7 @@ Computer Architecture - Spring 2024
 **Instructor's Office Hours:**
 
   * Chat on Microsoft Teams: Mon-Fri 9:00 AM - 6:00 PM
-  * Physical Office Hours: Mon/Wed 2:30 PM - 4:00 PM @ 5423 Sennott Square, or by appointment
+  * Physical Office Hours: Mon 2:30 PM - 4:00 PM @ 5423 Sennott Square, Thu 2:15 - 3:45 PM @ 621 IS Building, or by appointment
 
 **Class GitHub repo:** https://www.github.com/wonsunahn/CS1541_Spring2024
 
