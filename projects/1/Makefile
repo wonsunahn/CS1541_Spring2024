@@ -17,7 +17,7 @@ else
 endif
 
 SHORT_TRACES_DIR = /afs/cs.pitt.edu/courses/1541/short_traces
-GNUPLOT = /afs/cs.pitt.edu/courses/1541/gnuplot-5.2.8/bin/gnuplot
+GNUPLOT = gnuplot
 
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:%.cpp=%.o)
@@ -83,9 +83,9 @@ plots/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage $
 	@echo "Running ./five_stage -t $(1) -c $(2) > $$@"
 	-@./five_stage -t $(1) -c $(2) > $$@
 
-plots_solution/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage_solution $(1) $(2)
-	@echo "Running ./five_stage_solution -t $(1) -c $(2) > $$@"
-	-@./five_stage_solution -t $(1) -c $(2) > $$@
+plots_solution/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: $(FIVE_STAGE_SOLUTION) $(1) $(2)
+	@echo "Running $(FIVE_STAGE_SOLUTION) -t $(1) -c $(2) > $$@"
+	-@$(FIVE_STAGE_SOLUTION) -t $(1) -c $(2) > $$@
 endef
 
 $(foreach trace,$(SHORT_TRACES),$(foreach conf, $(PLOT_CONFS), $(eval $(call plot_rules,$(trace),$(conf)))))

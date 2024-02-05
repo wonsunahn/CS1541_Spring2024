@@ -28,11 +28,11 @@ def main():
   try:
     opts, args = getopt.getopt(sys.argv[1:],"hi:o:",["inputDir=","outputFile="])
   except getopt.GetoptError:
-    print 'generate_plot.py -i <input directory> -o <output file>'
+    print ('generate_plot.py -i <input directory> -o <output file>')
     sys.exit(1)
   for opt, arg in opts:
     if opt == '-h':
-       print 'generate_plot.py -i <input directory> -o <output file>'
+       print ('generate_plot.py -i <input directory> -o <output file>')
        sys.exit()
     elif opt in ("-i", "--inputDir"):
        reportRoot = arg

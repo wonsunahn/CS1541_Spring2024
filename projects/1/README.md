@@ -31,7 +31,7 @@ Spring Semester 2024 - Project 1
 
 * DUE: Mar 8 (Friday), 2024 11:59 PM 
 
-Please accept Project 1 on **GitHub Classroom** using this link: TBD
+Please accept Project 1 on **GitHub Classroom** using this link: https://classroom.github.com/a/as6auSF5
 
 When you click on the above link, you will be asked to select your email
 address from a list.  After you select, you will be asked to either create a
@@ -137,10 +137,11 @@ make
 The output should look like:
 
 ```
-g++ -c -g -Wall -I/usr/include/glib-2.0/ -I/usr/lib64/glib-2.0/include/ five_stage.cpp
-g++ -c -g -Wall -I/usr/include/glib-2.0/ -I/usr/lib64/glib-2.0/include/ config.cpp
-g++ -c -g -Wall -I/usr/include/glib-2.0/ -I/usr/lib64/glib-2.0/include/ CPU.cpp
-g++ -c -g -Wall -I/usr/include/glib-2.0/ -I/usr/lib64/glib-2.0/include/ trace.cpp
+g++ -c -g -Wall -fsanitize=address `pkg-config --cflags glib-2.0` five_stage.cpp
+g++ -c -g -Wall -fsanitize=address `pkg-config --cflags glib-2.0` config.cpp
+g++ -c -g -Wall -fsanitize=address `pkg-config --cflags glib-2.0` CPU.cpp
+g++ -c -g -Wall -fsanitize=address `pkg-config --cflags glib-2.0` trace.cpp
+g++ five_stage.o config.o CPU.o trace.o -g -fsanitize=address `pkg-config --libs glib-2.0` -o five_stage
 ...
 ```
 
@@ -700,11 +701,11 @@ In this section are various tutorials about using Git and debugging C code that
 you will find useful.  At below are links to resources mentioned in the
 tutorials.
 
-* [The Linux Command Line tutorial](http://linuxcommand.org/lc3_learning_the_shell.php)
-* [GitHub Desktop](https://desktop.github.com/)
+* [VSCode Debugging tutorial](https://code.visualstudio.com/docs/editor/debugging)
 * [Google ASAN Tutorial](https://github.com/google/sanitizers/wiki/AddressSanitizer)
 * [GDB tutorial](https://sourceware.org/gdb/current/onlinedocs/gdb/)
-* [VSCode Debugging tutorial](https://code.visualstudio.com/docs/editor/debugging)
+* [The Linux Command Line tutorial](http://linuxcommand.org/lc3_learning_the_shell.php)
+* [GitHub Desktop](https://desktop.github.com/)
 
 ## GitHub Primer
 
@@ -753,11 +754,11 @@ have used before.  ASAN is useful for catching memory bugs in C/C++ programs as
 soon as they occur, rather than wait for them to cause memory corruption or a
 segmentation fault.  ASAN also provides a stack trace of the memory error with
 source line numbers of exactly where it occurred, in ways very similar to a
-Java stack trace.  Your compiled binary is automatically instrumented with ASAN
-when you run the program on Linux (thoth.cs.pitt.edu) or Mac (see below on how
-to do that), by the Makefile.  Unfortunately, ASAN is not yet available on
-Windows, so you will need to run your program on thoth to detect memory bugs,
-if you are using Windows.
+Java stack trace.  The Makefile is written such that your binary is
+automatically instrumented with ASAN when you compile the program on Linux or
+Mac (note the '-fsanitize=address' flags passed to g++).  Unfortunately, ASAN
+is not yet available on Windows, so you will need to run your program on thoth
+to detect memory bugs after pushing and pulling your change through Gits.
 
 * [GDB tutorial](https://sourceware.org/gdb/current/onlinedocs/gdb/)
 * [Google ASAN Tutorial](https://github.com/google/sanitizers/wiki/AddressSanitizer)
