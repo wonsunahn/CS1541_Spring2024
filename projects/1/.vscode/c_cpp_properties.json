@@ -15,16 +15,15 @@
         },
         {
             "name": "Mac",
-            "compilerPath": "",
+            "compilerPath": "/usr/bin/clang",
             "includePath": [
                 "/opt/homebrew/Cellar/glib/2.78.4/include/glib-2.0",
                 "/opt/homebrew/Cellar/glib/2.78.4/lib/glib-2.0/include",
                 "/opt/homebrew/opt/gettext/include",
                 "/opt/homebrew/Cellar/pcre2/10.42/include",
-                "${workspaceFolder}",
-                "C:/msys64/ucrt64/include/glib-2.0"
+                "${workspaceFolder}"
             ],
-            "intelliSenseMode": "macos-gcc-x64",
+            "intelliSenseMode": "macos-clang-arm64",
             "cStandard": "c17",
             "cppStandard": "gnu++17"
         }
