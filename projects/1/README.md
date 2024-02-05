@@ -548,8 +548,6 @@ simulator and all diff tests should pass.
 
 ## Task 3: Analyzing Performance Plots
 
-**CONSTRUCTION COMPLETE!  DO TO COMPLETE THE PROJECT 1 RETROSPECTIVE!**
-
 First, generate the IPC.pdf and IPC_solution.pdf performance plots and verify
 that they are identical.  Refer to the [Creating Performance
 Plots](#creating-performance-plots) section on how to generate these plots.
