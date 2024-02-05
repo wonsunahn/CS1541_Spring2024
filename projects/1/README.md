@@ -821,7 +821,16 @@ variable values.
 
 <img alt="VSCode Debugging" src="img/vscode_debug.png">
 
-Please refer to the [VSCode Debugging tutorial](https://code.visualstudio.com/docs/editor/debugging) for details.
+Please refer to the [VSCode Debugging
+tutorial](https://code.visualstudio.com/docs/editor/debugging) for details.
+
+Now, I did tell you that you need to generate the performance plots on thoth,
+but it may work on Windows if you install the mingw-w64-x86_64-gnuplot package
+on MinGW:
+
+```
+pacman -S mingw-w64-ucrt-x86_64-gnuplot
+```
 
 ### For Mac
 
@@ -833,7 +842,9 @@ Essentially, you have to do on a terminal:
 xcode-select --install
 ```
 
-Then, we are going to use Homebrew to install some packages, so if you don't have it, please install it following instructions in this link: https://brew.sh/.
+Then, we are going to use Homebrew to install some packages, so if you don't
+have it, please install it following instructions in this link:
+https://brew.sh/.
 
 Then use Homebrew to install the glib2 package:
 ```
@@ -852,3 +863,10 @@ perform all 'make' commands explained above on that terminal.
 
 You can also use the VSCode Debug extension to debug your code, in exactly the
 same way as described above for WIndows.
+
+Again, I did tell you that you need to generate the performance plots on thoth,
+but it may work on Windows if you install gnuplot on Homebrew: 
+
+```
+brew install gnuplot
+```
