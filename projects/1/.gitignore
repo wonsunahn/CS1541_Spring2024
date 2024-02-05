@@ -1,0 +1,12 @@
+*.o
+*.diff
+*.out
+five_stage.exe
+trace_reader.exe
+trace_generator.exe
+five_stage
+trace_reader
+trace_generator
+diffs/
+outputs/
+outputs_solution/
