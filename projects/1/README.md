@@ -31,7 +31,7 @@ Spring Semester 2024 - Project 1
 
 * DUE: Mar 8 (Friday), 2024 11:59 PM 
 
-Please accept Project 1 on **GitHub Classroom** using this link: TBD
+Please accept Project 1 on **GitHub Classroom** using this link: https://classroom.github.com/a/as6auSF5
 
 When you click on the above link, you will be asked to select your email
 address from a list.  After you select, you will be asked to either create a
