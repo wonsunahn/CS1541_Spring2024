@@ -65,7 +65,7 @@ CS 1541 Computer Architecture
     3. Click on the "Start Assignment" button.  There will be a count down timer on the top right once you start.
     4. Finish and submit the exam within 75 minutes.  You can submit multiple times.
   * Optionally, you can try the "Sample GradeScope Exam (For Practice)" to get used to the mechanics.
-  * Exam is open book (Lecture slides, notes, textbook, all tophat questions and homeworks you completed, use of Project 1 simulator to verify your submission).
+  * Exam is open book (Lecture slides, notes, textbook, all tophat questions and homeworks you completed, use of Project 1 simulator to verify your submission).  You are not allowed to use generative AI in any form.
   * Exam is individual work.
 
 ## WEEK 9 (Week of 4 MAR)
