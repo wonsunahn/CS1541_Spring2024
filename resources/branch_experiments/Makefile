@@ -1,6 +1,5 @@
 TARGETS = branch
 
-GNUPLOT = /afs/cs.pitt.edu/courses/1541/gnuplot-5.2.8/bin/gnuplot
 CC = g++
 COPT = -pthread
 LOPT = -pthread
