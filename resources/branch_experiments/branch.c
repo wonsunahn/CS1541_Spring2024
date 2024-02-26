@@ -34,6 +34,6 @@ int main(int args, char **argv)
                 sum += data[c];
         }
     }
-    printf("sum = %ld\n", sum);
+    printf("sum = %lld\n", sum);
 }
 
