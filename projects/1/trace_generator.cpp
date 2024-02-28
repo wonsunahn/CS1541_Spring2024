@@ -1,5 +1,5 @@
 /** Code by @author Wonsun Ahn
- * 
+ *
  * Utility program to generate a trace file of your own.  Takes as argument the
  * name of the file.
  */
@@ -7,16 +7,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-#include "CPU.h" 
-#include "trace.h" 
+#include "CPU.h"
+#include "trace.h"
 
 int main(int argc, char **argv)
 {
-  instruction *tr_entry = (instruction *) malloc(sizeof(instruction));
   size_t size;
   char *trace_file_name;
+  instruction inst;
   dynamic_inst dinst = {{0}};
-  
+
   unsigned int t_sReg_a;
   unsigned int t_sReg_b;
   unsigned int t_dReg;
@@ -41,35 +41,36 @@ int main(int argc, char **argv)
 
   for (i = 0 ; i < trcount ; i++) {
     printf("\nEnter exactly 6 fields for instruction %d: ", i);
-    scanf("%d %c %d %d %d %d",  &tr_entry->PC, &itype, &t_sReg_a, &t_sReg_b, &t_dReg, &tr_entry->Addr) ;
+    scanf("%d %c %d %d %d %d",  &inst.PC, &itype, &t_sReg_a, &t_sReg_b, &t_dReg, &inst.Addr) ;
 
     //set the register values after casting
-    tr_entry->sReg_a = (char) t_sReg_a;
-    tr_entry->sReg_b = (char) t_sReg_b;
-    tr_entry->dReg = (char) t_dReg;
+    inst.sReg_a = (char) t_sReg_a;
+    inst.sReg_b = (char) t_sReg_b;
+    inst.dReg = (char) t_dReg;
 
     repeat = 0 ;
-    if(itype == 'R') {tr_entry->type = ti_RTYPE ;}
-    else if(itype == 'I') {tr_entry->type = ti_ITYPE ;}
-    else if (itype == 'L') {tr_entry->type = ti_LOAD;}
-    else if (itype == 'S') {tr_entry->type = ti_STORE;}
-    else if (itype == 'B') {tr_entry->type = ti_BRANCH ;}
-    else if (itype == 'N') {tr_entry->type = ti_NOP ;}
+    if(itype == 'R') {inst.type = ti_RTYPE ;}
+    else if(itype == 'I') {inst.type = ti_ITYPE ;}
+    else if (itype == 'L') {inst.type = ti_LOAD;}
+    else if (itype == 'S') {inst.type = ti_STORE;}
+    else if (itype == 'B') {inst.type = ti_BRANCH ;}
+    else if (itype == 'N') {inst.type = ti_NOP ;}
     else {printf("unrecognized instruction type -- try again ") ; repeat = 1;  i-- ; }
 
     //write the instruction into the trace file
-    if (repeat == 0) write_trace(*tr_entry, trace_file_name);
+    if (repeat == 0) write_trace(inst, trace_file_name);
   }
   printf("Now, the file \"%s\" contains the following instructions: \n", trace_file_name);
   trace_fd = fopen(trace_file_name, "rb");
   trace_init();
   while(1) {
+    instruction *tr_entry = NULL;
     size = trace_get_item(&tr_entry);
-   
-    if (!size) 
-      break; 
 
-    // Display the generated trace 
+    if (!size)
+      break;
+
+    // Display the generated trace
     dinst.seq++;
     dinst.inst = *tr_entry;
 
