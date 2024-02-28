@@ -1,5 +1,5 @@
 /** Code by @author Wonsun Ahn
- * 
+ *
  * Utility program to read and print out the contents of a trace file in human
  * readable format.  Takes as argument the name of the file.
  */
@@ -7,16 +7,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-#include "CPU.h" 
-#include "trace.h" 
+#include "CPU.h"
+#include "trace.h"
 
 int main(int argc, char **argv)
 {
-  instruction *tr_entry = (instruction *) malloc(sizeof(instruction));
+  instruction *tr_entry = NULL;
   size_t size;
   char *trace_file_name;
   dynamic_inst dinst = {{0}};
-  
+
   if (argc == 1) {
     fprintf(stdout, "\nMissing argument: the name of the file to be read\n");
     exit(0);
@@ -27,11 +27,11 @@ int main(int argc, char **argv)
 
   while(1) {
     size = trace_get_item(&tr_entry);
-   
-    if (!size) 
-      break; 
 
-    // Display the generated trace 
+    if (!size)
+      break;
+
+    // Display the generated trace
     dinst.seq++;
     dinst.inst = *tr_entry;
 
