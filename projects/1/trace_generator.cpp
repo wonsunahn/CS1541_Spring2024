@@ -20,15 +20,17 @@ int main(int argc, char **argv)
   unsigned int t_sReg_a;
   unsigned int t_sReg_b;
   unsigned int t_dReg;
+  int trcount, i, repeat;
+  char itype ;
+
 
   if (argc == 1) {
     fprintf(stdout, "\nMissing argument: the name of the file to be generated\n");
     exit(0);
   }
   trace_file_name = argv[1];
-  fopen(trace_file_name, "w");
-  int trcount, i, repeat;
-  char itype ;
+  trace_fd = fopen(trace_file_name, "wb");
+  fclose(trace_fd);
 
   printf("\nEnter the number of instructions you want to have in the file \"%s\": ", trace_file_name);
   scanf("%d", &trcount );
