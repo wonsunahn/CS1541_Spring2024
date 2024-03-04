@@ -29,7 +29,7 @@
 # CS 1541 - Introduction to Computer Architecture
 Spring Semester 2024 - Project 1
 
-* DUE: Mar 8 (Friday), 2024 11:59 PM 
+* DUE: Mar 18 (Monday), 2024 4:30 PM 
 
 Please accept Project 1 on **GitHub Classroom** using this link: https://classroom.github.com/a/as6auSF5
 
