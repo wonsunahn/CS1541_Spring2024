@@ -34,7 +34,7 @@ void *create(void *unused) {
       last = n;
     }
   }
-
+  return NULL;
 }
 
 void *run(void *unused) {
