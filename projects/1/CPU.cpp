@@ -58,14 +58,18 @@ int writeback()
   if (is_older(MEM_ALU, MEM_lwsw)) {
     WB.push_back(MEM_ALU);
     MEM_ALU = get_NOP();
-    WB.push_back(MEM_lwsw);
-    MEM_lwsw = get_NOP();
+    if(MEM_lwsw.inst.type != ti_LOAD || (config->regFileWritePorts == 2)) {
+      WB.push_back(MEM_lwsw);
+      MEM_lwsw = get_NOP();
+    }
   }
   else {
     WB.push_back(MEM_lwsw);
     MEM_lwsw = get_NOP();
-    WB.push_back(MEM_ALU);
-    MEM_ALU = get_NOP();
+    if(MEM_lwsw.inst.type != ti_LOAD || (config->regFileWritePorts == 2)) {
+      WB.push_back(MEM_ALU);
+      MEM_ALU = get_NOP();
+    }
   }
   if (verbose) {/* print the instruction exiting the pipeline if verbose=1 */
     for (int i = 0; i < (int) WB.size(); i++) {
@@ -129,12 +133,43 @@ int issue()
 int decode()
 {
   int insts = 0;
+  printf("Size of ID: %lu\n", ID.size());
   while ((int)IF.size() > 0 && (int)ID.size() < config->pipelineWidth) {
+    if(is_NOP(IF.front())) {
+      IF.pop_front();
+      continue;
+    }
     ID.push_back(IF.front());
     IF.pop_front();
     insts++;
   }
   return insts;
+}
+
+bool checkStages(unsigned char targetReg) {
+  for(int i = 0; i < config->pipelineWidth; i++) {
+    dynamic_inst targetInst = ID.front();
+    ID.pop_front();
+    if(!is_NOP(targetInst) && targetInst.inst.dReg == targetReg)
+      return true;
+    ID.push_back(targetInst);
+  }
+  for(int i = 0; i < config->pipelineWidth; i++) {
+    dynamic_inst targetInst = ID.front();
+    WB.pop_front();
+    if(!is_NOP(targetInst) && targetInst.inst.dReg == targetReg)
+      return true;
+    WB.push_back(targetInst);
+  }
+  if(!is_NOP(EX_ALU) && EX_ALU.inst.dReg == targetReg)
+    return true;
+  if(!is_NOP(EX_lwsw) && EX_lwsw.inst.dReg == targetReg)
+    return true;
+  if(!is_NOP(MEM_ALU) && MEM_ALU.inst.dReg == targetReg)
+    return true;
+  if(!is_NOP(MEM_lwsw) && MEM_lwsw.inst.dReg == targetReg)
+    return true;
+  return false;
 }
 
 int fetch()
@@ -144,6 +179,11 @@ int fetch()
   dynamic_inst dinst;
   instruction *tr_entry = NULL;
 
+  if (!config->splitCaches && !is_NOP(MEM_lwsw) && MEM_lwsw.inst.type == ti_LOAD) {
+    while((int)IF.size() < config->pipelineWidth) {
+      IF.push_back(get_NOP()); 
+    }
+  }
   /* copy trace entry(s) into IF stage */
   while((int)IF.size() < config->pipelineWidth) {
     size_t size = trace_get_item(&tr_entry); /* put the instruction into a buffer */
@@ -162,4 +202,3 @@ int fetch()
   inst_number += insts;
   return insts;
 }
-
