@@ -25,6 +25,7 @@ void *create(void *unused) {
     n->next = &head[items+1];
   }
   last->next = NULL;
+  return NULL;
 }
 
 void *run(void *unused) {
