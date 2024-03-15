@@ -410,9 +410,8 @@ $ make plots
 ```
 
 The above command will create two files: IPC.pdf and IPC_solution.pdf.  The two
-files show the IPCs for the short traces in
-/afs/cs.pitt.edu/courses/1541/short_traces for the various processor
-configurations under plot_confs/, for your five_stage binary and the
+files show the IPCs for the 4 traces in the plot_traces folder for the various
+processor configurations under plot_confs/, for your five_stage binary and the
 five_stage_solution binary respectively.
 
 If you open IPC_solution.pdf, you will see 8 bars (results of running each of
@@ -765,11 +764,7 @@ to detect memory bugs after pushing and pulling your change through Gits.
 
 ## Creating build environment on local machine
 
-Please note that, you will need to generate the performance plots on
-thoth.cs.pitt.edu as it needs GNU Plot installed on that machine.  But for the
-purposes of implementing, debugging, and testing your simulator, you can choose
-to work on your local machine using the Visual Studio Code (VSCode) IDE.  If
-you don't have VSCode already, please download and install from:
+If you don't have VSCode already, please download and install from:
 https://code.visualstudio.com/download
 
 After you install VSCode, please install the following two extensions.
@@ -792,6 +787,11 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 After the above, you will need to on the same UCRT64 terminal install the glib2 package needed by the program:
 ```
 pacman -S mingw-w64-ucrt-x86_64-glib2
+```
+
+You will also need to install the gnuplot package to generate performance plots:
+```
+pacman -S mingw-w64-ucrt-x86_64-gnuplot
 ```
 
 If you need to, you can launch the MSYS2 UCRT64 terminal easily by searching it
@@ -824,14 +824,6 @@ variable values.
 Please refer to the [VSCode Debugging
 tutorial](https://code.visualstudio.com/docs/editor/debugging) for details.
 
-Now, I did tell you that you need to generate the performance plots on thoth,
-but it may work on Windows if you install the mingw-w64-x86_64-gnuplot package
-on MinGW:
-
-```
-pacman -S mingw-w64-ucrt-x86_64-gnuplot
-```
-
 ### For Mac
 
 To run VSCode on Mac, you will need to install the Clang compiler tool chain following instructions on this link:
@@ -856,6 +848,11 @@ You will also need the pkg-config package:
 brew install pkg-config
 ```
 
+Finally, install the gnuplot package for the performance plots:
+```
+brew install gnuplot
+```
+
 After having done that, clone the project repository on to your laptop and then
 open the folder where you cloned it to using VSCode File > Open Folder menu.
 Then open a terminal through the Terminal > New Terminal menu.  Now you can
@@ -863,10 +860,3 @@ perform all 'make' commands explained above on that terminal.
 
 You can also use the VSCode Debug extension to debug your code, in exactly the
 same way as described above for WIndows.
-
-Again, I did tell you that you need to generate the performance plots on thoth,
-but it may work on Windows if you install gnuplot on Homebrew: 
-
-```
-brew install gnuplot
-```
