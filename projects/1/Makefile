@@ -16,7 +16,7 @@ UNAME_S := $(shell uname -s)
     endif
 endif
 
-SHORT_TRACES_DIR = /afs/cs.pitt.edu/courses/1541/short_traces
+PLOT_TRACES_DIR = plot_traces
 GNUPLOT = gnuplot
 
 SOURCES = $(wildcard *.cpp)
@@ -27,10 +27,10 @@ OUTPUTS := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), outputs/$(trace:t
 OUTPUTS_SOLUTION := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), outputs_solution/$(trace:traces/%.tr=%).$(conf:confs/%.conf=%).out))
 DIFFS := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), diffs/$(trace:traces/%.tr=%).$(conf:confs/%.conf=%).diff))
 
-SHORT_TRACES = $(wildcard $(SHORT_TRACES_DIR)/*.tr)
+PLOT_TRACES = $(wildcard $(PLOT_TRACES_DIR)/*.tr)
 PLOT_CONFS = $(wildcard plot_confs/*.conf)
-PLOT_OUTPUTS := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(SHORT_TRACES), plots/$(trace:$(SHORT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
-PLOT_OUTPUTS_SOLUTION := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(SHORT_TRACES), plots_solution/$(trace:$(SHORT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
+PLOT_OUTPUTS := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(PLOT_TRACES), plots/$(trace:$(PLOT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
+PLOT_OUTPUTS_SOLUTION := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(PLOT_TRACES), plots_solution/$(trace:$(PLOT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
 
 COPT = -g -Wall $(CASAN) `pkg-config --cflags glib-2.0`
 LOPT = -g $(LASAN) `pkg-config --libs glib-2.0`
@@ -79,16 +79,16 @@ endef
 $(foreach trace,$(TRACES),$(foreach conf, $(CONFS), $(eval $(call diff_rules,$(trace),$(conf)))))
 
 define plot_rules
-plots/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage $(1) $(2)
+plots/$(1:$(PLOT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage $(1) $(2)
 	@echo "Running ./five_stage -t $(1) -c $(2) > $$@"
 	-@./five_stage -t $(1) -c $(2) > $$@
 
-plots_solution/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: $(FIVE_STAGE_SOLUTION) $(1) $(2)
+plots_solution/$(1:$(PLOT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: $(FIVE_STAGE_SOLUTION) $(1) $(2)
 	@echo "Running $(FIVE_STAGE_SOLUTION) -t $(1) -c $(2) > $$@"
 	-@$(FIVE_STAGE_SOLUTION) -t $(1) -c $(2) > $$@
 endef
 
-$(foreach trace,$(SHORT_TRACES),$(foreach conf, $(PLOT_CONFS), $(eval $(call plot_rules,$(trace),$(conf)))))
+$(foreach trace,$(PLOT_TRACES),$(foreach conf, $(PLOT_CONFS), $(eval $(call plot_rules,$(trace),$(conf)))))
 
 %.pdf: %.dat
 	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_plot.plt
