@@ -33,7 +33,7 @@ set cbrange [ * : * ] noreverse writeback
 set rrange [ * : * ] noreverse writeback
 
 # Render plot
-set terminal pdf transparent enhanced font "arial,10" fontscale 5.0 size 45, 30
+set terminal pdf transparent enhanced font "arial,10" fontscale 4.0 size 45, 30
 
 if (!exists("inputFile")) filename='IPC.dat'
 if (!exists("outputFile")) filename='IPC.pdf'
