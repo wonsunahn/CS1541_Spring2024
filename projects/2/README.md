@@ -18,9 +18,9 @@
 - [Resources](#resources)
   
 # CS/COE 1541 - Introduction to Computer Architecture
-Spring Semester 2023 - Project 2
+Spring Semester 2024 - Project 2
 
-Please accept Project 2 on **GitHub Classroom** using the following link: TBD
+Please accept Project 2 on **GitHub Classroom** using the following link: https://classroom.github.com/a/XjSFGfHp
 
 * DUE: Apr 26 (Friday), 2024 11:59 PM
 
