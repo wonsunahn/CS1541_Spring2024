@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPath": "C:/msys64/ucrt64/bin/g++",
+            "includePath": [
+                "C:/msys64/ucrt64/bin/../include/glib-2.0",
+                "C:/msys64/ucrt64/bin/../lib/glib-2.0/include",
+                "C:/msys64/ucrt64/bin/../include",
+                "${workspaceFolder}"
+            ],
+            "intelliSenseMode": "windows-gcc-x64",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17"
+        },
+        {
+            "name": "Mac",
+            "compilerPath": "/usr/bin/clang",
+            "includePath": [
+                "/opt/homebrew/Cellar/glib/2.78.4/include/glib-2.0",
+                "/opt/homebrew/Cellar/glib/2.78.4/lib/glib-2.0/include",
+                "/opt/homebrew/opt/gettext/include",
+                "/opt/homebrew/Cellar/pcre2/10.42/include",
+                "${workspaceFolder}"
+            ],
+            "intelliSenseMode": "macos-clang-arm64",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17"
+        }
+    ],
+    "version": 4
+}

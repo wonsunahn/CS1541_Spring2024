@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "name": "Launch five_stage",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": ["-t", "traces/sample.tr", "-c", "confs/l1-wb.conf", "-d"],
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "stopAtEntry": true,
+      "externalConsole": false,
+      "setupCommands": [
+        {
+        "description": "Enable pretty-printing for gdb",
+        "text": "-enable-pretty-printing",
+        "ignoreFailures": true
+        }
+      ],
+      "linux": {
+        "program": "${workspaceFolder}/five_stage.linux",
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb"
+      },
+      "osx": {
+        "program": "${workspaceFolder}/five_stage.mac",
+        "MIMode": "lldb"
+      },
+      "windows": {
+        "program": "${workspaceFolder}/five_stage.exe",
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+        "targetArchitecture": "x64",
+      }
+    }
+  ],
+  "version": "2.0.0"
+}

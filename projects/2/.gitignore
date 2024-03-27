@@ -1,0 +1,6 @@
+*.o
+*.diff
+*.out
+five_stage.*
+trace_reader.*
+trace_generator.*
