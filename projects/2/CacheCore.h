@@ -8,7 +8,10 @@
 
 enum    ReplacementPolicy  {LRU, RANDOM};
 
-/** @brief <B>TODO</B>: A cache block array with the given capacity, cache
+/** 
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief <B>TODO</B>: A cache block array with the given capacity, cache
  * block size, and associativity.
  *
  * It is organized into rows (sets) and columns (blocks per set).  For now,

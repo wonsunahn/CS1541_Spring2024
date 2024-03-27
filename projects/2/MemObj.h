@@ -10,7 +10,10 @@
 
 class MemRequest;
 
-/** @brief A generic memory object.
+/**
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief A generic memory object.
  *
  * Provides only abstract interfaces for access, toString, getStatString,
  * getContentString methods so can't be instantiated.  Children classes

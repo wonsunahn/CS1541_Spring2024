@@ -1,6 +1,8 @@
 #ifndef MEMREQUEST_H
 #define MEMREQUEST_H
 
+#include <stdint.h>
+#include <assert.h>
 #include <string>
 
 enum MemOperation {
@@ -9,7 +11,10 @@ enum MemOperation {
   MemWriteBack,
 };
 
-/** @brief A memory request.
+/** 
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief A memory request.
  *
  * There are three types of memory requests: MemRead, MemWrite, and
  * MemWriteBack.  The memory request conceptually travels down the memory

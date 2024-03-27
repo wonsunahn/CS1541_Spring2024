@@ -8,8 +8,11 @@
 #include "MemObj.h"
 #include "MemRequest.h"
 
-/** @brief A generic cache.
- *
+/** 
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief A generic cache.
+ * 
  * Provides only abstract interfaces for read, write, and writeBack methods
  * so can't be instantiated.  Children classes WBCache and WTCache override
  * these methods to implement them respectively.
@@ -76,8 +79,11 @@ class Cache: public MemObj
     std::string getContentString() const;
 };
 
-/** @brief <B>TODO</B>: A write back cache.
- *
+/** 
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief <B>TODO</B>: A write back cache.
+ * 
  * On a write request, it marks the cache block dirty and only writes back
  * the dirty block to lower level memory on displacements.  On a write miss,
  * it allocates a new block, reads it in from lower memory, then marks it
@@ -128,8 +134,11 @@ class WBCache : public Cache {
     std::string getWritePolicy() const { return "WB"; }
 };
 
-/** @brief <B>TODO</B>: A write through cache.
- *
+/** 
+ * @copyright Copyright 2024 Spring 2024 Wonsun Ahn. All rights reserved.
+ * 
+ * @brief <B>TODO</B>: A write through cache.
+ * 
  * On a write request, it updates the cache block if it is a hit.  If it is
  * a miss, then no block is allocated (no write allocate).  Regardless of
  * hit or miss, the write is propagated to lower level memory.  There are no

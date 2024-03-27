@@ -1,3 +1,6 @@
 {
     "makefile.makePath": "mingw32-make",
+    "files.associations": {
+        "cstdint": "cpp"
+    },
 }
