@@ -34,7 +34,7 @@ void *create(void *unused) {
       last = n;
     }
   }
-
+  return NULL;
 }
 
 /* Method measured by Linux perf.  Iterates over the linked list in the
