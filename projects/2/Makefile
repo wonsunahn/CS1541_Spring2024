@@ -120,7 +120,7 @@ MissRates_solution.pdf: MissRates_solution.dat generate_cachestats_plot.plt
 MissRates.dat: $(PLOT_OUTPUTS) generate_cachestats_plot.py
 	python generate_cachestats_plot.py -i plot_outputs -o $@
 
-MissRates_solution.dat: $(PLOT_OUTPUTS) generate_cachestats_plot.py
+MissRates_solution.dat: $(PLOT_OUTPUTS_SOLUTION) generate_cachestats_plot.py
 	python generate_cachestats_plot.py -i plot_outputs_solution -o $@
 
 
