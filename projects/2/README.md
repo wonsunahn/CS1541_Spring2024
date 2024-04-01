@@ -15,6 +15,7 @@
   * [Task 2: Implement the Write-back and Write-through Caches](#task-2-implement-the-write-back-and-write-through-caches)
     + [Source Code](#source-code)
   * [Task 3: Analyze Performance Data for Arrays and Linked-lists](#task-3-analyze-performance-data-for-arrays-and-linked-lists)
+    + [Generating Performance Data on your Laptop](#generating-performance-data-on-your-laptop)
   * [Submission](#submission)
 - [Resources](#resources)
 
@@ -718,6 +719,36 @@ IPC_solution.dat, IPC_solution.pdf, MissRates_solution.dat, and
 MissRates_solution.pdf.  If your simulator results do not match the solution
 simulator results, please use the solution simulator results to answer the
 Retrospective questions.
+
+### Generating Performance Data on your Laptop
+
+You can choose to generate the performance data on your laptop if that is what
+you prefer.  But you will first have to copy over the trace files for the
+experiments from thoth.  I've intentionally not included the traces files in
+the git repository because they are quite large.  You will need approximately
+600 MB in total.  If you have that mush space, please cd into the plot_traces folder from the root of the Project 2 repository:
+
+```
+cd plot_traces
+```
+
+Then, remote copy the traces from thoth using scp (replacing \[PittID\] with your ID):
+
+```
+scp [PittID]@thoth.cs.pitt.edu:/afs/cs.pitt.edu/courses/1541/plot_traces/* .
+```
+
+Then, edit the [Makefile](Mak$efile) to modify the PLOT_TRACES_DIR variable:
+
+```
+PLOT_TRACES_DIR = plot_traces
+```
+
+Then, you should be able to generate the plots as in thoth:
+
+```
+make plots
+```
 
 ## Submission
 
