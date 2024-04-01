@@ -1,23 +1,30 @@
+# Location of the plot traces.  Since the plot traces are quite large, they
+# are not included in the git repository.
+# PLOT_TRACES_DIR = plot_traces
+PLOT_TRACES_DIR = /afs/cs.pitt.edu/courses/1541/plot_traces/
+
+# Do parallel make on 4 CPUs
+MAKEFLAGS += -j4
+
 ifeq ($(OS),Windows_NT)
   EXE_SUFFIX=.exe
 else
   UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-    EXE_SUFFIX=.linux
-	CASAN = -fsanitize=address
+    CASAN = -fsanitize=address
     LASAN = -fsanitize=address
+    EXE_SUFFIX=.linux
   endif
   ifeq ($(UNAME_S),Darwin)
-    EXE_SUFFIX=.mac
-	CASAN = -fsanitize=address
+    CASAN = -fsanitize=address
     LASAN = -fsanitize=address
+    EXE_SUFFIX=.mac
   endif
 endif
 
 TARGETS = five_stage$(EXE_SUFFIX) trace_reader$(EXE_SUFFIX) trace_generator$(EXE_SUFFIX)
 
-SHORT_TRACES_DIR = plot_traces
-GNUPLOT = /afs/cs.pitt.edu/courses/1541/gnuplot-5.2.8/bin/gnuplot
+GNUPLOT = gnuplot
 
 CONFS = $(wildcard confs/*.conf)
 TRACES = $(wildcard traces/*.tr)
@@ -25,10 +32,10 @@ OUTPUTS := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), outputs/$(trace:t
 OUTPUTS_SOLUTION := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), outputs_solution/$(trace:traces/%.tr=%).$(conf:confs/%.conf=%).out))
 DIFFS := $(foreach conf,$(CONFS),$(foreach trace, $(TRACES), diffs/$(trace:traces/%.tr=%).$(conf:confs/%.conf=%).diff))
 
-SHORT_TRACES = $(wildcard $(SHORT_TRACES_DIR)/*.tr)
+PLOT_TRACES = $(wildcard $(PLOT_TRACES_DIR)/*.tr)
 PLOT_CONFS = $(wildcard plot_confs/*.conf)
-PLOT_OUTPUTS := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(SHORT_TRACES), plot_outputs/$(trace:$(SHORT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
-PLOT_OUTPUTS_SOLUTION := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(SHORT_TRACES), plot_outputs_solution/$(trace:$(SHORT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
+PLOT_OUTPUTS := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(PLOT_TRACES), plot_outputs/$(trace:$(PLOT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
+PLOT_OUTPUTS_SOLUTION := $(foreach conf,$(PLOT_CONFS),$(foreach trace, $(PLOT_TRACES), plot_outputs_solution/$(trace:$(PLOT_TRACES_DIR)/%.tr=%).$(conf:plot_confs/%.conf=%).out))
 
 COPT = -g -Wall $(CASAN) -Wno-format-security -std=c++11 `pkg-config --cflags glib-2.0`
 LOPT = -g $(LASAN) `pkg-config --libs glib-2.0`
@@ -37,7 +44,7 @@ CC = g++
 all: build run
 build: $(TARGETS)
 run: $(OUTPUTS) $(OUTPUTS_SOLUTION) $(DIFFS)
-plots: $(PLOT_OUTPUTS) $(PLOT_OUTPUTS_SOLUTION)
+plots: IPC.pdf IPC_solution.pdf MissRates.pdf MissRates_solution.pdf
 
 five_stage.o: config.h CPU.h MemObj.h MemRequest.h
 trace_reader.o: CPU.h trace.h
@@ -81,25 +88,40 @@ endef
 $(foreach trace,$(TRACES),$(foreach conf, $(CONFS), $(eval $(call diff_rules,$(trace),$(conf)))))
 
 define plot_rules
-plot_outputs/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage$(EXE_SUFFIX) $(1) $(2)
+plot_outputs/$(1:$(PLOT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage$(EXE_SUFFIX) $(1) $(2)
 	@echo "Running ./five_stage$(EXE_SUFFIX) -t $(1) -c $(2) > $$@"
 	-@./five_stage$(EXE_SUFFIX) -t $(1) -c $(2) > $$@
 
-plot_outputs_solution/$(1:$(SHORT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage_solution$(EXE_SUFFIX) $(1) $(2)
+plot_outputs_solution/$(1:$(PLOT_TRACES_DIR)/%.tr=%).$(2:plot_confs/%.conf=%).out: five_stage_solution$(EXE_SUFFIX) $(1) $(2)
 	@echo "Running ./five_stage_solution$(EXE_SUFFIX) -t $(1) -c $(2) > $$@"
 	-@./five_stage_solution$(EXE_SUFFIX) -t $(1) -c $(2) > $$@
 endef
 
-$(foreach trace,$(SHORT_TRACES),$(foreach conf, $(PLOT_CONFS), $(eval $(call plot_rules,$(trace),$(conf)))))
+$(foreach trace,$(PLOT_TRACES),$(foreach conf, $(PLOT_CONFS), $(eval $(call plot_rules,$(trace),$(conf)))))
 
-%.pdf: %.dat
-	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_plot.plt
+IPC.pdf: IPC.dat generate_perf_plot.plt
+	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_perf_plot.plt
 
-IPC.dat: $(PLOT_OUTPUTS)
-	python generate_plot.py -i plot_outputs -o $@
+IPC_solution.pdf: IPC_solution.dat generate_perf_plot.plt
+	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_perf_plot.plt
 
-IPC_solution.dat: $(PLOT_OUTPUTS_SOLUTION)
-	python generate_plot.py -i plot_outputs_solution -o $@
+IPC.dat: $(PLOT_OUTPUTS) generate_perf_plot.py
+	python generate_perf_plot.py -i plot_outputs -o $@
+
+IPC_solution.dat: $(PLOT_OUTPUTS_SOLUTION) generate_perf_plot.py
+	python generate_perf_plot.py -i plot_outputs_solution -o $@
+
+MissRates.pdf: MissRates.dat generate_cachestats_plot.plt
+	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_cachestats_plot.plt
+
+MissRates_solution.pdf: MissRates_solution.dat generate_cachestats_plot.plt
+	$(GNUPLOT) -e "inputFile='$<'" -e "outputFile='$@'" generate_cachestats_plot.plt
+
+MissRates.dat: $(PLOT_OUTPUTS) generate_cachestats_plot.py
+	python generate_cachestats_plot.py -i plot_outputs -o $@
+
+MissRates_solution.dat: $(PLOT_OUTPUTS) generate_cachestats_plot.py
+	python generate_cachestats_plot.py -i plot_outputs_solution -o $@
 
 
 clean:
