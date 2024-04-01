@@ -1,4 +1,4 @@
-- [CS/COE 1541 - Introduction to Computer Architecture](#cscoe-1541---introduction-to-computer-architecture)
+- [CS 1541 - Introduction to Computer Architecture](#cs-1541---introduction-to-computer-architecture)
 - [Introduction](#introduction)
   * [Description](#description)
   * [Processor Design](#processor-design)
@@ -13,11 +13,12 @@
 - [Your Tasks](#your-tasks)
   * [Task 1: Implement the Cache Block Array](#task-1-implement-the-cache-block-array)
   * [Task 2: Implement the Write-back and Write-through Caches](#task-2-implement-the-write-back-and-write-through-caches)
-  * [Source Code](#source-code)
+    + [Source Code](#source-code)
+  * [Task 3: Analyze Performance Data for Arrays and Linked-lists](#task-3-analyze-performance-data-for-arrays-and-linked-lists)
   * [Submission](#submission)
 - [Resources](#resources)
-  
-# CS/COE 1541 - Introduction to Computer Architecture
+
+# CS 1541 - Introduction to Computer Architecture
 Spring Semester 2024 - Project 2
 
 Please accept Project 2 on **GitHub Classroom** using the following link: https://classroom.github.com/a/XjSFGfHp
@@ -601,7 +602,7 @@ Complete the implementation of Cache.h / Cache.cpp.  As of now, all accesses
 miss in the cache and no cache block allocation is done.  Complete the read,
 write, and writeBack functions according to what we learned in the lecture.
 
-## Source Code
+### Source Code
 
 I had to write some of the code in C++ this time because there was no way to
 cleanly implement memory objects with just C.  While you may have never learned
@@ -670,9 +671,53 @@ collection.  With C++, the programmer has to manually free the object using the
    As you can see in the above code in CPU.c, you have to delete every object you
 create using 'new' or else you will have a memory leak.
 
-As with C programs, you can use
-[valgrind](https://valgrind.org/docs/manual/QuickStart.html) to detect most
-memory bugs in C++, including memory leaks.
+[As in Project 1](https://github.com/wonsunahn/CS1541_Project1/#debugging-cc),
+the binary is already instrumented with [ASAN (Google Address
+Sanitizer)](https://github.com/google/sanitizers/wiki/AddressSanitizer) if you
+are running on Mac or Linux (thoth), so it will automatically report back
+memory errors like memory leaks, dangling pointer accesses, and buffer
+overflows.  If you are running on Windows, unfortunately ASAN is not yet ported
+so you can try running your code on thoth to detect memory errors.  You can
+also use VSCode debugger to step through your code.
+
+## Task 3: Analyze Performance Data for Arrays and Linked-lists
+
+I have generated instruction traces for the array.cpp and linked-list.cpp files
+that we discussed in class.  The source code for
+[array.cpp](https://github.com/wonsunahn/CS1541_Project_Tracer/blob/main/array.cpp)
+and
+[linked-list.cpp](https://github.com/wonsunahn/CS1541_Project_Tracer/blob/main/linked-list.cpp)
+are available from the [CS1541_Project_Tracer project repository](
+https://github.com/wonsunahn/CS1541_Project_Tracer/tree/main).  The
+CS1541_Project_Tracer uses the Pin binary instrumentation tool to instrument a
+32-bit x86 binary with instructions to generate traces while a program is
+running.  The tool needs a Genuine Intel CPU to run, which many of you don't
+have, so I have pre-generated the traces on thoth under the directory
+/afs/cs.pitt.edu/courses/1541/plot_traces.
+
+I have also written three new configuration files for the purposes of
+performance analysis under the plot_confs/ folder.  All the configuration files
+omit the WriteBuffer for easier performance analysis, as we are primarily
+interested in understanding cache behavior in this section.
+
+To generate simulation results from the above traces and configurations files,
+simple do on thoth.cs.pitt.edu:
+
+```
+make plots
+```
+
+This will generate two tables of statistics one for IPC (IPC.dat) and one for
+cache behavior (MissRates.dat).  Then using GNUPlot, it will generate line
+graphs out of those tables: IPC.pdf for the former and MissRates.pdf for the
+latter.  You will analyze these tables and line graphs to answer questions in
+the Project 2 Retrospective.  If you are not done with the source code
+implementation, you can still generate statistics using the provided solution
+simulator.  The tables and line graphs generated from the solution are named:
+IPC_solution.dat, IPC_solution.pdf, MissRates_solution.dat, and
+MissRates_solution.pdf.  If your simulator results do not match the solution
+simulator results, please use the solution simulator results to answer the
+Retrospective questions.
 
 ## Submission
 
