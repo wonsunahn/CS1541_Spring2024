@@ -130,7 +130,7 @@ CS 1541 Computer Architecture
     2. Click on assignment "Midterm 2" on GradeScope (will appear at start of class).
     3. Click on the "Start Assignment" button.  There will be a count down timer on the top right once you start.
     4. Finish and submit the exam within 110 minutes.  You can submit multiple times.
-  * Exam is open book (Lecture slides, notes, textbook, all tophat questions and homeworks you completed, use of Project 1 simulator to verify your submission).  You are not allowed to use generative AI in any form.
+  * Exam is open book (Lecture slides, notes, textbook, all tophat questions and homeworks you completed, use of simulator or cache demo to verify your submission).  You are not allowed to use generative AI in any form.
   * Exam is individual work.
     
 * Homework 4 Extra Credit due on GradeScope
