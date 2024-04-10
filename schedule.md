@@ -124,7 +124,7 @@ CS 1541 Computer Architecture
 
 ## WEEK 16 (Week of 22 APR)
 
-* Midterm 1 on GradeScope at April 22 (Monday) 12:00 - 1:50 PM.
+* Midterm 2 on GradeScope at April 22 (Monday) 12:00 - 1:50 PM.
   * Steps:
     1. Do TopHat attendance at start of class.  If no attendance, grade will not be counted.
     2. Click on assignment "Midterm 2" on GradeScope (will appear at start of class).
