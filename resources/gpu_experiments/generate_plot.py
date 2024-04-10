@@ -13,6 +13,7 @@ def getTime(reportRoot, prefix, policy, size, comp):
   if f==0:
     return 0
 
+  time = 0
   while True:
     l = f.readline()
     if l.find(comp) != -1:
