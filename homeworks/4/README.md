@@ -21,11 +21,11 @@ The homework is setup to run with the nvcc compiler (NVIDIA CUDA compiler) and
 a Make build system.  This system is already in place on a few machines with
 GPUs that I rented out from the department.  The hostnames of these machines are:
 
-* netlab-int-1.cs.pitt.edu
-* netlab-int-2.cs.pitt.edu
-* netlab-int-3.cs.pitt.edu
-* netlab-int-4.cs.pitt.edu
-* netlab-int-5.cs.pitt.edu
+* netlab-1-int.cs.pitt.edu
+* netlab-2-int.cs.pitt.edu
+* netlab-3-int.cs.pitt.edu
+* netlab-4-int.cs.pitt.edu
+* netlab-5-int.cs.pitt.edu
 
 You need to log in to one of these machines to do the work.
 
@@ -33,7 +33,7 @@ You need to log in to one of these machines to do the work.
 
 2. Connect to one of the above server through SSH:
    ```
-   ssh USERNAME@netlab-int-1.cs.pitt.edu
+   ssh USERNAME@netlab-1-int.cs.pitt.edu
    ```
 
 3. Once connected, the host will ask for your Pitt SSO credentials.  Enter your ID and password.
