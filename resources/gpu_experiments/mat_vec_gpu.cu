@@ -59,6 +59,7 @@ __global__ void mv_cuda_shared(float* y, float* A, float* x, int n)
 			for (int k = j; k < min(n, j + blockDim.x); k++) {
 				temp += A[row*n + k] * s_x[k - j];
 			}
+			__syncthreads();
 		}
 		y[row] = temp;
 	}
