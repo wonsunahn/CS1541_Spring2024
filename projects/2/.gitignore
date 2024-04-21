@@ -2,6 +2,6 @@
 *.diff
 *.out
 *.DS_Store
-five_stage.*
-trace_reader.*
-trace_generator.*
+*.exe
+*.mac
+*.linux
